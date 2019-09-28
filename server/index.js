@@ -20,7 +20,7 @@ app.post('/api/auth/login', ctrl.login)
 // app.get('/api/posts/:userid',)
 // app.post('/api/post/:userid',)
 // app.get('/api/post/:postid',)
-app.delete('api/auth/logout', ctrl.logout)
+app.post('api/auth/logout', ctrl.logout)
 
 
 

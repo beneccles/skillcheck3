@@ -1,0 +1,69 @@
+.Nav {
+    width: 100px;
+    height: 100vh;
+    position: fixed;
+    background-image: linear-gradient(0deg, #ff7abe, #ff9770);
+    box-shadow: 10px 0 20px;
+    padding-top: 20px;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: flex-start;
+}
+
+#profile {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: flex-start;
+    align-content: flex-start;
+    margin-top: 20px;
+}
+
+.profilePic {
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #333;
+}
+
+.upperNav {
+    height: 32vh;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: flex-start;
+}
+
+.navImage {
+    width: 40px;
+}
+
+.Nav > div {
+    margin: 0 0 45px;
+}
+#navDash {
+    /* margin-top: 10px; */
+    display: flex;
+	flex-direction: column;
+	/* flex-wrap: nowrap; */
+	justify-content: space-between;
+	/* align-items: center;
+	align-content: flex-start; */
+}
+
+#navDashTop {
+    margin-bottom: 30px;
+}
+
+div {
+    display: block;
+}

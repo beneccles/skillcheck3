@@ -5,11 +5,12 @@ const initialState = {
     id: null,
     profile: "",
     loggedIn: false,
-    user: null
+    // user: null
 }
 
 // ACTION CONSTS
 const UPDATE_USER = 'UPDATE_USER'
+const LOGOUT = 'LOGOUT'
 
 // ACTION BUILDERS
 export const updateUser = (userObj) => {
@@ -19,14 +20,24 @@ export const updateUser = (userObj) => {
     }
 }
 
+export const logout = () => {
+    return {
+        type: LOGOUT
+    }
+}
+
 
 
 // Reducer Function
 const reducer = (state = initialState, action) => {
     const {payload, type} = action
     switch (type) {
+        case LOGOUT:
+            // Clear state
+            return initialState;
         case UPDATE_USER:
-            return {...state, user: payload}
+            console.log(payload)
+            return {...state, ...payload}
         default:
             return state;
     }

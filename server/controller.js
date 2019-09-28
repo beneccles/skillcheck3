@@ -14,16 +14,13 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt)
         // Store the new user in the DB
         const userId = await db.add_user({ username, password})
-        console.log(userId[0]) // Sends back id
+        // Sends back id
         db.add_hash({ user_id: userId[0].id, hash}).catch(err => {
             return res.sendStatus(503)
         })
 
-        console.log(userId)
         req.session.user = {username, userId: userId[0].id}
-        console.log(req.session.user)
         res.status(201).send({message: 'Logged in', user: req.session.user, loggedIn: true})
-
     },
     async login(req, res) {
         const db = req.app.get('db')
@@ -39,8 +36,8 @@ module.exports = {
         // If hashes don't match, send appropriate response
         if (!result) return res.status(200).send({ message: 'Incorrect password'})
         // If they do match, add user to sessions
-        const { username, user_id: userId } = user[0]
-        req.session.user = { username, userId }
+        const { name: username, id: userId, profile_pic } = user[0]
+        req.session.user = { username, userId, profile_pic }
         // Send session.user back to front end
         res.status(200).send({ message: 'Logged in', user: req.session.user, loggedIn: true})
     },

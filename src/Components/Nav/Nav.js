@@ -1,20 +1,56 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { withRouter, Link } from 'react-router-dom'
+import { updateUser, logout } from '../../ducks/reducer'
+import { connect } from 'react-redux'
+import homeImage from '../../assets/home_img.png'
+import logoutImage from '../../assets/logout.png'
+import newPost from '../../assets/new_post.png'
 
 
-function Nav(props) {
+import './Nav.css';
 
-  if (props.location.pathname !== '/') { // Only show the account control buttons if logged in. (in other words, if we are on the login screen, don't show these buttons)
-    return (
-      <div className="Nav">
-        <Link to="/dashboard"><button>Home</button></Link>
-        <Link to="/new"><button>New Post</button></Link>
-        <Link to="/"><button>Logout</button></Link>
-      </div>
-    )
-  } else {
-    return null
+
+class Nav extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  logout = () => {
+    axios.post('/api/auth/logout').then(res => logout())
+  }
+
+  render() {
+    console.log(this.props)
+    if (this.props.location.pathname !== '/') { // Only show the account control buttons if logged in. (in other words, if we are on the login screen, don't show these buttons)
+      return (
+        <div className="Nav">
+          <div className="upperNav">
+            <div id="profile">
+              <div className="profilePic" style={{ backgroundImage: `url('${this.props.profile}')` }}></div>
+            </div>
+            <div id="navDash">
+              <Link id="navDashTop" to="/dashboard"><img className="navImage" src={homeImage} alt="Home" /></Link>
+              <Link to="/new"><img className="navImage" src={newPost} alt="New Post" /></Link>
+            </div>
+          </div>
+          <div id="logoutButton">
+            <Link id="logoutButton" to="/"><img className="navImage" src={logoutImage} onClick={this.logout} alt="logout" /></Link>
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    }
+  }
+}
+
+function mapStateToProps(reduxState) {
+  return {
+    username: reduxState.username,
+    id: reduxState.id,
+    profile: reduxState.profile
   }
 }
 // In order for props.match or this.props.location to work, you need to include withRouter
-export default withRouter(Nav)
+export default withRouter(connect(mapStateToProps, { updateUser, logout })(Nav))

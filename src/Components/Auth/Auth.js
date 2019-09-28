@@ -22,24 +22,38 @@ class Auth extends Component {
     })
   }
 
-  register = () => {
-    const {username, password} = this.state
+  register =  () => {
     axios.post('/api/auth/register', this.state).then(res => {
-      updateUser(res.data.user)
+      this.props.updateUser(res.data.user)
+      this.props.history.push('/dashboard')
       swal.fire({type: 'success', text: res.data.message})
     }).catch((err) => {
       console.log(err)
     })
   }
 
-  login = () => {
-    const {username, password} = this.state
-    axios.post('/api/auth/login', this.state).then(res => {
-      updateUser(res.data.user)
+  // login = () => {
+  //   axios.post('/api/auth/login', this.state).then(res => {
+  //     const {userId: id, profile_pic: profile, username: name} = res.data.user
+  //     const user = {id, profile, name}
+  //     updateUser(user)
+  //     this.props.history.push('/dashboard')
+  //     swal.fire({type: 'success', text: res.data.message})
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
+  // }
+
+  login = async () => {
+    const res = await axios.post('/api/auth/login', this.state)
+    if (res.data.user) {
+      const {userId: id, profile_pic: profile, username: name} = res.data.user
+      const user = {id, profile, name}
+      console.log(user)
+      this.props.updateUser(user)
+      this.props.history.push('/dashboard')
       swal.fire({type: 'success', text: res.data.message})
-    }).catch((err) => {
-      console.log(err)
-    })
+    }
   }
 
 
