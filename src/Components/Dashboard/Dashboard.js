@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+import './Dash.css';
 export default class Dashboard extends Component {
   constructor() {
     super() 
@@ -10,7 +11,7 @@ export default class Dashboard extends Component {
   render() {
     return (
     <div className="Dashboard">
-      <div className="dashBar">
+      <div className="content_box dashBar">
         <div className="dashSearch">
 
         </div>
@@ -18,8 +19,8 @@ export default class Dashboard extends Component {
 
         </div>
       </div>
-      <div className="posts">
-        
+      <div className="content-box posts">
+
       </div>
     </div>
     )

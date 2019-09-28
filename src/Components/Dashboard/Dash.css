@@ -47,29 +47,24 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/************/
-.App {
-  text-align: center;
-  min-width: 100%;
-  min-height: 100vh;
-  background-color: #f2f2f2;
+/*************/
+div { 
+    display: block;
+}
+.Dashboard {
+    width: 70%;
+    margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
+.content_box {
+    border-radius: 2px;
+    background-color: #fff;
+    padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+.dashBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
 }
