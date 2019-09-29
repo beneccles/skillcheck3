@@ -1,0 +1,50 @@
+
+
+.Post {
+    width: 70%;
+    min-height: 400px;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.profilePicSmall {
+    height: 100px;
+    width: 100px;
+}
+
+.postPicture {
+    height: 250px;
+    width: 50%;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+}
+
+.postText {
+    width: 50%;
+    border: 1px solid green;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: stretch;
+}
+
+.juxatpose {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+}
+
+.authorSpot {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+

@@ -39,7 +39,6 @@ class Nav extends Component {
   }
 
   render() {
-    console.log(this.props)
     if (this.props.location.pathname !== '/') { // Only show the account control buttons if logged in. (in other words, if we are on the login screen, don't show these buttons)
       return (
         <div className="Nav">

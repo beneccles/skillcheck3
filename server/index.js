@@ -33,7 +33,7 @@ app.get('/api/posts/:me', ctrl.getPosts)
 app.get('/api/user', ctrl.getId)
 app.get('/api/posts', connectDB, ctrl.postSearch)
 // app.post('/api/post/:userid',)
-// app.get('/api/post/:postid',)
+app.get('/api/post', ctrl.singlePost)
 app.post('api/auth/logout', ctrl.logout)
 
 

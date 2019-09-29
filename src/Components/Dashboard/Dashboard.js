@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
     super()
     this.state = {
       search: '',
-      myPosts: false,
+      myPosts: true,
       posts: [],
       loading: true,
       user: {}
@@ -57,7 +57,6 @@ export default class Dashboard extends Component {
 
   renderPosts = () => {
     const display = this.state.posts.map((el, index) => {
-      console.log(el)
       return (
         <Link to={`/post/${el.post_id}`} key={index}>
           <h1>{el.title}</h1>

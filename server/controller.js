@@ -93,6 +93,14 @@ module.exports = {
             return res.status(200).send({message: 'No Posts found'})
         }
 
+    },
+    async singlePost(req ,res) {
+        const db = req.app.get('db')
+        const {id} = req.query
+        console.log(`Post ${id}`)
+        const post = await db.get_post([id])
+
+        res.status(200).send(post)
     }
 
 }
