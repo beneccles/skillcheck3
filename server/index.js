@@ -15,9 +15,23 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
+// app.use((req, res, next) => {
+//     const db = req.app.get('db')
+//     req.db = db;
+//     next()
+// })
+
+const connectDB = (req, res, next) => {
+    const db = req.app.get('db')
+    req.db = db;
+    next()
+}
+
 app.post('/api/auth/register', ctrl.register)
 app.post('/api/auth/login', ctrl.login)
-// app.get('/api/posts/:userid',)
+app.get('/api/posts/:id', ctrl.getPosts)
+app.get('/api/user', ctrl.getId)
+app.get('/api/posts', connectDB, ctrl.postSearch)
 // app.post('/api/post/:userid',)
 // app.get('/api/post/:postid',)
 app.post('api/auth/logout', ctrl.logout)

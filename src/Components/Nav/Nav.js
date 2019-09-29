@@ -14,6 +14,24 @@ import './Nav.css';
 class Nav extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      username: "",
+      id: null,
+      profile: ""
+    }
+  }
+
+  async componentDidMount() {
+    const res = await axios.get('/api/user')
+    if (res.data) {
+      const {username, userId, profile_pic} = res.data
+      this.setState({
+        username: username, id: userId, profile: profile_pic
+      })
+    }
+
+
   }
 
   logout = () => {
@@ -27,7 +45,7 @@ class Nav extends Component {
         <div className="Nav">
           <div className="upperNav">
             <div id="profile">
-              <div className="profilePic" style={{ backgroundImage: `url('${this.props.profile}')` }}></div>
+              <div className="profilePic" style={{ backgroundImage: `url('${this.state.profile}')` }}></div>
             </div>
             <div id="navDash">
               <Link id="navDashTop" to="/dashboard"><img className="navImage" src={homeImage} alt="Home" /></Link>

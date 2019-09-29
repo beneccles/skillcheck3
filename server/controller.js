@@ -38,12 +38,51 @@ module.exports = {
         // If they do match, add user to sessions
         const { name: username, id: userId, profile_pic } = user[0]
         req.session.user = { username, userId, profile_pic }
+        console.log(req.session.user)
         // Send session.user back to front end
         res.status(200).send({ message: 'Logged in', user: req.session.user, loggedIn: true})
     },
     logout(req, res) {
         req.session.destroy()
         res.status(200).send({message: 'Logged Out', loggedIn: false})
+    },
+    async getPosts(req, res) {
+        const db = req.app.get('db')
+        const { id } = req.session.user
+
+        if (id) {
+            const posts = await db.posts_id(id)
+        } else {
+            const posts = await db.all_posts()
+
+        }
+        
+        if (!posts) {
+        return res.status(200).send({ message: "No posts found."})
+        }
+
+        res.status(200).send(posts)
+    },
+    getId(req, res) {
+        const db = req.app.get('db')
+        const { username, userId, profile_pic } = req.session.user
+        const user = { username, userId, profile_pic}
+        console.log('getId', user)
+        return res.status(200).send(user)
+
+    },
+    async postSearch(req, res) {
+        const db = req.app.get('db')
+        // \?search="blah"
+        const {search} = req.query
+        const posts = await db.post_search([search])
+        console.log(posts)
+        if (posts) {
+            return res.status(200).send(posts)
+        } else {
+            return res.status(200).send({message: 'No Posts found'})
+        }
+
     }
 
 }

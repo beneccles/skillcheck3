@@ -47,6 +47,7 @@ class Auth extends Component {
   login = async () => {
     const res = await axios.post('/api/auth/login', this.state)
     if (res.data.user) {
+      console.log(res.data)
       const {userId: id, profile_pic: profile, username: name} = res.data.user
       const user = {id, profile, name}
       console.log(user)
