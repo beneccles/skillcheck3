@@ -38,7 +38,6 @@ module.exports = {
         // If they do match, add user to sessions
         const { name: username, id: userId, profile_pic } = user[0]
         req.session.user = { username, userId, profile_pic }
-        console.log(req.session.user)
         // Send session.user back to front end
         res.status(200).send({ message: 'Logged in', user: req.session.user, loggedIn: true})
     },
@@ -46,28 +45,40 @@ module.exports = {
         req.session.destroy()
         res.status(200).send({message: 'Logged Out', loggedIn: false})
     },
-    async getPosts(req, res) {
+    getPosts(req, res) {
         const db = req.app.get('db')
+        console.log(req.session)
         const { id } = req.session.user
+        const { me } = req.params
 
-        if (id) {
-            const posts = await db.posts_id(id)
-        } else {
-            const posts = await db.all_posts()
-
-        }
+        db.all_posts().then((posts) => {
+            res.status(200).send(posts)
+        }).catch((err) => {
+            console.log(err)
+            res.sendStatus(500)
+            
+        })
         
-        if (!posts) {
-        return res.status(200).send({ message: "No posts found."})
-        }
+        // if (me === false) {
 
-        res.status(200).send(posts)
+        //    db.all_posts().then(() => {
+        //         res.status(200).send(res.data)
+        //     })
+            
+        // } else {
+        //    db.posts_id(id).then(() =>
+        //         res.status(200).send(res.data)
+        //     )
+        // }
+
+        // if (!posts) {
+        // return res.status(200).send({ message: "No posts found."})
+        // }
+
     },
     getId(req, res) {
-        const db = req.app.get('db')
         const { username, userId, profile_pic } = req.session.user
         const user = { username, userId, profile_pic}
-        console.log('getId', user)
         return res.status(200).send(user)
 
     },
@@ -76,7 +87,6 @@ module.exports = {
         // \?search="blah"
         const {search} = req.query
         const posts = await db.post_search([search])
-        console.log(posts)
         if (posts) {
             return res.status(200).send(posts)
         } else {

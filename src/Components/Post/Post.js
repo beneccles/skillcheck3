@@ -7,10 +7,15 @@ export default class Post extends Component {
 
     }
   }
+
+  componentDidMount(){
+    console.log(this.props.location.state)
+  }
   render() {
+    
     return (
     <div className="Post">
-      Post
+      {`Post ${this.props.match.params.postid}`}
     </div>
     )
   }
