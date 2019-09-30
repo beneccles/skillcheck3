@@ -39,7 +39,7 @@ export default class Post extends Component {
       <div className="postHead juxatpose">
       <h1>{this.state.title}</h1>
       <div className="authorSpot">
-      <h2>{this.state.username}</h2>
+      <p>by {this.state.username}</p>
       <div className="profilePicSmall" style={{ backgroundImage: `url('${this.state.profile_pic}')` }}></div>
       </div>
       </div>

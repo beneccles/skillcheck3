@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import swal from 'sweetalert2'
 import axios from 'axios'
 import logo from '../../assets/HeloLogo.png'
+import logo2 from '../../assets/HeloLogo2.png'
 import {updateUser} from '../../ducks/reducer'
 import './Auth.css';
 import {connect} from 'react-redux'
@@ -64,7 +65,7 @@ class Auth extends Component {
       <div className="authBody">
         <div className="Auth">
           <div id="authLogo">
-            <img src={logo} alt="Helo" />
+            <img id="authImg" src={logo} alt="Helo" />
           </div>
           <div className="authRow" id="authUser">
             <pre id="user">Username:</pre>

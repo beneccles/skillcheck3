@@ -5,6 +5,7 @@
 }
 
 .authBody {
+    
     box-sizing: border-box;
     height: 100vh;
     width: 100vw;
@@ -18,6 +19,8 @@
 }
 
 .Auth {
+    min-width: 375px;
+    min-height: 812px;
     height: 40%;
     width: 70%;
     border-radius: 10px;
@@ -32,9 +35,14 @@
 }
 
 #authLogo {
+    margin-bottom: 10px;
     background-image: '../../assets/HeloLogo';
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#authImg:hover {
+    content:url("../../assets/HeloLogo2.png")
 }
 
 .authRow {

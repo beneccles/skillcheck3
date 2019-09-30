@@ -68,12 +68,14 @@ export default class Dashboard extends Component {
   renderPosts = () => {
     const display = this.state.posts.map((el, index) => {
       return (
-        <Link to={`/post/${el.post_id}`} key={index}>
-          <h1>{el.title}</h1>
+        <Link id="smallPost" to={`/post/${el.post_id}`} key={index}>
+          <div className="postBox">
+          <h1 id="postTitle">{el.title}</h1>
           <div className="profileTag">
-            <h2>{el.username}</h2>
-            <div className="profilePic" style={{ backgroundImage: `url('${el.profile_pic}')`}}>
+            <p id="authorPost">by {el.username}</p>
+            <div className="profilePicSmall" style={{ backgroundImage: `url('${el.profile_pic}')`}}>
             </div>
+          </div>
           </div>
         </Link>
       )

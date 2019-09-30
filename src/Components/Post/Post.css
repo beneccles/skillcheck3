@@ -5,6 +5,18 @@
     min-height: 400px;
     margin: 0 auto;
     border: 1px solid black;
+    box-sizing: inherit;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 70%;
+    min-height: 400px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.2);
+    border-radius: 2px;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .profilePicSmall {
@@ -13,21 +25,50 @@
 }
 
 .postPicture {
-    height: 250px;
-    width: 50%;
     background-repeat: no-repeat;
+    background-size: contain;
     margin-left: 20px;
+    min-height: 400px;
+    margin: 0 auto;
+    border: 1px solid black;
+    box-sizing: inherit;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 50%;
+    min-height: 400px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.2);
+    border-radius: 2px;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .postText {
-    width: 50%;
+    margin-left: 10px;
     border: 1px solid green;
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-	align-content: stretch;
+    align-content: stretch;
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid black;
+    box-sizing: inherit;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 70%;
+    min-height: 400px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.2);
+    border-radius: 2px;
+    background-color: #fff;
+    padding: 20px;
 }
 
 .juxatpose {
@@ -37,6 +78,14 @@
 	justify-content: space-between;
 	align-items: center;
 	align-content: stretch;
+}
+
+.authorSpot > p {
+    margin-right: 10px;
+}
+
+.postBody {
+    margin-top: 10px;
 }
 
 .authorSpot {
