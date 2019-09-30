@@ -5,6 +5,8 @@ import logo from '../../assets/HeloLogo.png'
 import logo2 from '../../assets/HeloLogo2.png'
 import {updateUser} from '../../ducks/reducer'
 import './Auth.css';
+// /Users/ben_eccles/devmtn/week7/skillcheck3/node_modules/animate.css/animate.css
+import '../../../node_modules/animate.css/animate.css'
 import {connect} from 'react-redux'
 
 class Auth extends Component {
@@ -64,7 +66,7 @@ class Auth extends Component {
     return (
       <div className="authBody">
         <div className="Auth">
-          <div id="authLogo">
+          <div id="authLogo" className="animated bounceInDown" >
             <img id="authImg" src={logo} alt="Helo" />
           </div>
           <div className="authRow" id="authUser">
