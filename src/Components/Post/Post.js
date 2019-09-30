@@ -30,7 +30,6 @@ export default class Post extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.location.state)
     this.getPost()
   }
   render() {

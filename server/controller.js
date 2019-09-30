@@ -48,8 +48,16 @@ module.exports = {
     getPosts(req, res) {
         const db = req.app.get('db')
         console.log(req.session)
-        const { id } = req.session.user
-        const { me } = req.params
+        const { userId } = req.session.user
+        const { me } = req.query
+
+        console.log(me)
+
+        if (me) {
+            db.posts_id(userId).then((posts) =>
+                res.status(200).send(posts)
+            )
+        }
 
         db.all_posts().then((posts) => {
             res.status(200).send(posts)
@@ -101,6 +109,19 @@ module.exports = {
         const post = await db.get_post([id])
 
         res.status(200).send(post)
+    },
+    createPost(req, res) {
+        const db = req.app.get('db')
+        const {userId} = req.session.user
+        console.log(req.body)
+        const {title, content, img} = req.body
+        console.log(title)
+        db.add_post([title, img, content, userId]).then(() => {
+            res.status(200).send({message: 'Post Sucess!'})
+        }).catch((err) => {
+            console.log(err)
+            res.status(500).send({message: 'Post Failure.'})
+        })
     }
 
 }

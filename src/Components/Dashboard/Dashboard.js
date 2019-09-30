@@ -27,20 +27,20 @@ export default class Dashboard extends Component {
   }
 
   handleCheck = (e) => {
-    if (e.target.value === 'on') {
-      this.setState({myPosts: true})
-    } else {
-      this.setState({myPosts: false})
-    }
+    const { checked } = e.target
+    this.setState({
+      myPosts: checked
+    })
+    this.getPosts()
 
   }
 
   getPosts = async () => {
-    console.log(this.state.myPosts, 'getPosts')
-    const res = await axios.get(`/api/posts/${this.state.myPosts}`)
-    console.log('res', res)
+    const res = await axios.get(`/api/posts/?me=${this.state.myPosts}`)
+
     if (res.data) {
       this.setState({posts: res.data})
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -52,6 +52,16 @@ export default class Dashboard extends Component {
 
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  reset = async () => {
+    this.setState({myPosts: false})
+    const res = await axios.get(`/api/posts/?me=${this.state.myPosts}`)
+
+    if (res.data) {
+      this.setState({posts: res.data, loading: false, search: ''})
+      this.props.history.push('/dashboard')
     }
   }
 
@@ -82,7 +92,7 @@ export default class Dashboard extends Component {
             <button onClick={() => this.getPosts()}>Reset</button>
           </div>
           <div className="dashCheck">
-            <input type="checkbox" onChange={(e) => this.handleCheck(e)} />
+            <input type="checkbox" defaultChecked={this.state.myPosts} onChange={(e) => this.handleCheck(e)} />
           </div>
         </div>
         <div className="content-box posts">
